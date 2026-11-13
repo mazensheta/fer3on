@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fer3on Footwear Store</title>
+<meta name="description" content="Fer3on Foot Wear: Egyptian sneakers in sizes 32 to 42. Order online with delivery across Cairo.">
+<meta property="og:title" content="Fer3on Footwear Store">
+<meta property="og:description" content="Egyptian sneakers in sizes 32 to 42. Order online with delivery across Cairo.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#04070b">
+<link rel="canonical" href="https://mazensheta.github.io/fer3on/">
+<meta property="og:url" content="https://mazensheta.github.io/fer3on/">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one dark "ice" world from the logo. Quiet black panels, a single glowing
+   ticket (from the opening-day poster) as the loud element, shoes lit from below in ice blue. */
+:root{
+  color-scheme: dark;
+  --ink:#04070b;        /* page background */
+  --panel:#0a1017;      /* cards, drawers */
+  --panel-2:#0f1822;    /* raised surfaces, inputs */
+  --line:#1b2a38;       /* hairlines */
+  --ice:#4ddcf7;        /* brand blue, sampled from the logo */
+  --ice-deep:#0e7fa6;   /* pressed / shadows of the blue */
+  --text:#eaf7fc;
+  --mute:#8ba3b1;
+  --bad:#ff7b7b;
+  --display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.42em;text-transform:uppercase;color:var(--mute)}
+.num{font-variant-numeric:tabular-nums}
+
+/* announcement */
+.bar{background:var(--ice);color:#02161d;font:700 13px/1.3 var(--body);text-align:center;padding:9px 16px;letter-spacing:.04em}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(4,7,11,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.head{display:flex;align-items:center;gap:20px;height:72px}
+.logo img{height:46px;width:auto}
+nav{display:flex;gap:26px;margin-left:auto}
+nav a{text-decoration:none;font:600 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:8px 0}
+nav a:hover{color:var(--ice)}
+.cart-btn{display:flex;align-items:center;gap:10px;background:transparent;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:600}
+.cart-btn:hover{border-color:var(--ice)}
+.cart-btn .count{background:var(--ice);color:#02161d;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px;font-weight:700;padding:0 6px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before,.hero::after{content:"";position:absolute;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(77,220,247,.55) 48%,rgba(255,255,255,.75) 50%,rgba(77,220,247,.25) 53%,transparent 70%);filter:blur(.4px);opacity:.5}
+.hero::before{width:520px;height:260px;top:-120px;left:-200px;transform:rotate(-38deg);clip-path:polygon(0 40%,100% 0,100% 30%,0 100%)}
+.hero::after{width:620px;height:300px;bottom:-170px;right:-240px;transform:rotate(-32deg);clip-path:polygon(0 60%,100% 0,100% 45%,0 100%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding-block:56px 64px;position:relative}
+.hero h1{font-size:clamp(54px,9vw,112px);margin:16px 0 18px}
+.hero h1 em{font-style:italic;color:var(--ice);text-shadow:0 0 28px rgba(77,220,247,.45)}
+.hero p{color:var(--mute);max-width:46ch;margin:0 0 26px;font-size:17px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--ice);color:#02161d;border:0;border-radius:999px;padding:15px 26px;font-weight:700;text-decoration:none;letter-spacing:.03em;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(77,220,247,.35)}
+.cta.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.cta.ghost:hover{border-color:var(--ice);box-shadow:none}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-art{position:relative;display:grid;gap:18px;justify-items:center}
+.hero-shoe{width:min(100%,460px);filter:drop-shadow(0 30px 40px rgba(77,220,247,.28));transform:rotate(-8deg)}
+
+/* the ticket from the opening poster */
+.ticket{--notch:13px;width:min(100%,400px);background:linear-gradient(160deg,#b8f3ff 0%,var(--ice) 45%,#22b6dc 100%);color:#02161d;padding:18px 34px 20px;transform:rotate(-4deg);text-align:center;
+  -webkit-mask:radial-gradient(circle var(--notch) at left center,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--notch) at right center,#0000 97%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle var(--notch) at left center,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--notch) at right center,#0000 97%,#000) right/51% 100% no-repeat;
+  border-radius:12px}
+.ticket-glow{filter:drop-shadow(0 0 26px rgba(77,220,247,.55))}
+.ticket small{display:block;font:700 12px/1 var(--body);letter-spacing:.34em;text-transform:uppercase}
+.ticket .date{font:italic 800 30px/1 var(--display);margin:6px 0 2px}
+.ticket .line{font:italic 800 20px/1 var(--display);text-transform:uppercase}
+.ticket .big{font:italic 800 76px/.9 var(--display)}
+.ticket .big span{font-size:30px;margin-left:6px}
+
+/* strip */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.strip div{padding:20px;border-left:1px solid var(--line);font-size:14px;color:var(--mute)}
+.strip div:first-child{border-left:0}
+.strip b{display:block;color:var(--text);font:italic 700 20px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+
+/* shop */
+section{padding:64px 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:26px}
+.sec-head h2{font-size:clamp(38px,5.5vw,64px)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chip{background:transparent;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;color:var(--mute)}
+.chip:hover{color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--ice);border-color:var(--ice);color:#02161d}
+select.sort{background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:14px}
+.note{font-size:13px;color:var(--mute);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--ice);transform:translateY(-3px)}
+.card:hover .art svg,.card:hover .art img{transform:rotate(-6deg) scale(1.05)}
+.art{position:relative;aspect-ratio:4/3;display:grid;place-items:center;background:radial-gradient(60% 34% at 50% 82%,rgba(77,220,247,.22),transparent 70%),linear-gradient(180deg,#0d151e,#070b10)}
+.art svg,.art img{width:84%;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.art img{height:100%;width:100%;object-fit:cover}
+.tag{position:absolute;top:12px;left:12px;font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;background:rgba(4,7,11,.7);border:1px solid var(--line);color:var(--ice);border-radius:999px;padding:6px 10px}
+.info{padding:16px 16px 18px;display:grid;gap:6px}
+.info h3{font-size:24px}
+.info .sub{font-size:13px;color:var(--mute)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+.price{font:700 18px/1 var(--body)}
+.price small{font-size:12px;color:var(--mute);font-weight:600;margin-right:4px}
+.pick{font-size:13px;font-weight:700;color:var(--ice)}
+
+/* size guide + delivery */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.box h2{font-size:38px;margin-bottom:10px}
+.box p{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.sizes-table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--mute);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.sg summary{cursor:pointer;color:var(--ice);font-size:14px;font-weight:600}
+.sg p{font-size:12px;color:var(--mute);margin:8px 0 0}
+.sg table{font-size:13px;margin-top:8px}
+.sg th,.sg td{padding:6px 8px}
+.steps{display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;color:var(--mute);font-size:15px}
+.steps li::before{content:counter(s);font:italic 800 26px/1 var(--display);color:var(--ice)}
+.steps b{color:var(--text);display:block}
+
+footer{border-top:1px solid var(--line);padding:36px 0 48px;color:var(--mute);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+.foot img{height:40px}
+
+/* dialogs */
+dialog{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:0;border-radius:18px;width:min(920px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}
+dialog::backdrop{background:rgba(2,6,10,.72);backdrop-filter:blur(3px)}
+.x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);font-size:18px;z-index:2}
+.x:hover{border-color:var(--ice)}
+.pd{display:grid;grid-template-columns:1fr 1fr}
+.pd .art{aspect-ratio:auto;min-height:340px}
+.pd-body{padding:30px 28px;display:grid;gap:14px;align-content:start}
+.pd-body h2{font-size:44px}
+.pd-body .price{font-size:24px}
+.label{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between}
+.label a{color:var(--ice);letter-spacing:0;text-transform:none}
+.sizes{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.sz{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 0;font-weight:700}
+.sz:hover{border-color:var(--ice)}
+.sz[aria-pressed="true"]{background:var(--ice);border-color:var(--ice);color:#02161d}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.qty button{background:transparent;border:0;width:38px;height:38px;font-size:18px}
+.qty button:hover{color:var(--ice)}
+.qty span{min-width:28px;text-align:center;font-weight:700}
+.wide{width:100%;justify-content:center}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin:0}
+
+/* cart drawer */
+dialog.drawer{margin:0 0 0 auto;height:100dvh;max-height:100dvh;width:min(430px,100vw);border-radius:0;border-width:0 0 0 1px}
+.drawer-in{display:flex;flex-direction:column;height:100%}
+.drawer-head{padding:22px 22px 14px;border-bottom:1px solid var(--line)}
+.drawer-head h2{font-size:34px}
+.items{flex:1;overflow:auto;padding:8px 22px}
+.item{display:grid;grid-template-columns:84px 1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.item .art{border-radius:10px;aspect-ratio:1}
+.item b{display:block}
+.item .sub{font-size:13px;color:var(--mute)}
+.item .rm{background:none;border:0;color:var(--mute);font-size:12px;text-decoration:underline;padding:4px 0}
+.item .rm:hover{color:var(--bad)}
+.empty{color:var(--mute);text-align:center;padding:60px 10px}
+.drawer-foot{padding:18px 22px 22px;border-top:1px solid var(--line);display:grid;gap:10px}
+.sum{display:flex;justify-content:space-between;font-size:15px}
+.sum.total{font-weight:700;font-size:18px}
+.sum span:first-child{color:var(--mute)}
+.sum.total span:first-child{color:var(--text)}
+
+/* checkout */
+.co{display:grid;grid-template-columns:1.25fr .75fr}
+.co form{padding:30px 28px;display:grid;gap:16px}
+.co h2{font-size:40px}
+.co aside{background:var(--panel-2);padding:30px 24px;border-left:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.co aside h3{font-size:24px;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:12px}
+legend{font:italic 700 20px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ice);padding:0;margin-bottom:10px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--mute)}
+.field label i{color:var(--ice);font-style:normal}
+.field input,.field select,.field textarea{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 13px;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ice);outline:0}
+.field.invalid input,.field.invalid select{border-color:var(--bad)}
+.field .msg{font-size:12px;color:var(--bad);min-height:0}
+.pay{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
+.pay:has(input:checked){border-color:var(--ice)}
+.pay input{accent-color:var(--ice);width:18px;height:18px;margin-top:2px;flex:none}
+.pay b{display:block}
+.pay small{color:var(--mute);font-size:13px}
+.line-s{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.line-s span:first-child{color:var(--mute)}
+.done{padding:40px 30px;display:grid;gap:16px;justify-items:start;max-width:640px}
+.done h2{font-size:46px}
+.done pre{background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:14px;font:500 13px/1.6 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;width:100%;max-height:260px;overflow:auto;margin:0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,80px);background:var(--ice);color:#02161d;font-weight:700;padding:12px 20px;border-radius:999px;transition:transform .3s,opacity .3s;z-index:60;pointer-events:none;opacity:0}
+.toast.on{transform:translate(-50%,0);opacity:1}
+
+@media (max-width:860px){
+  nav{display:none}
+  .head{justify-content:space-between}
+  .hero-grid{grid-template-columns:1fr;padding-block:38px 48px}
+  .strip{grid-template-columns:1fr}
+  .strip div{border-left:0}
+  .strip div:nth-child(n+2){border-top:1px solid var(--line)}
+  .two,.pd,.co{grid-template-columns:1fr}
+  .pd .art{min-height:240px}
+  .co aside{border-left:0;border-top:1px solid var(--line);order:-1}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .info h3{font-size:20px}
+  .pick{display:none}
+}
+@media (max-width:460px){
+  .f2,.f3{grid-template-columns:1fr}
+  .info{padding:12px}
+  .logo img{height:38px}
+  .eyebrow{letter-spacing:.2em;line-height:1.5}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top" aria-label="Fer3on Footwear home"><img src="logo.png" alt="Fer3on Foot Wear"></a>
+    <nav aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#" data-sg>Size guide</a>
+    </nav>
+    <button class="cart-btn" id="open-cart" type="button">Cart <span class="count num" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid" style="grid-template-columns:1fr;padding-block:44px 48px">
+      <div>
+        <span class="eyebrow">Egyptian footwear</span>
+        <h1>Own <em>every step</em></h1>
+        <p>Sneakers built for everyday wear, from the first step of the morning to the last one at night. Delivery across Cairo.</p>
+        <div class="hero-actions">
+          <button class="cta" type="button" id="new-btn">New arrivals</button>
+          <button class="cta ghost" type="button" data-sg>Size guide</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">The collection</span>
+          <h2>All shoes</h2>
+        </div>
+        <div class="tools">
+          <div id="filters" class="tools" role="group" aria-label="Filter by style"></div>
+          <select class="sort" id="sort" aria-label="Sort shoes">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+        </div>
+      </div>
+      <div class="note" id="sample-note">Sample catalogue. The names, colours, prices and drawings below are placeholders until the real shoes and photos are added.</div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="logo.png" alt="Fer3on Foot Wear">
+    <span>Opening 16/11/2026 · Delivery across Cairo</span>
+    <span class="num">© 2026 Fer3on Foot Wear</span>
+  </div>
+</footer>
+
+<!-- product -->
+<dialog id="pd" aria-labelledby="pd-name">
+  <button class="x" type="button" data-close aria-label="Close">✕</button>
+  <div class="pd">
+    <div class="art" id="pd-art"></div>
+    <div class="pd-body">
+      <span class="eyebrow" id="pd-style"></span>
+      <h2 id="pd-name"></h2>
+      <div class="sub" id="pd-color" style="color:var(--mute)"></div>
+      <div class="price num" id="pd-price"></div>
+      <div class="label"><span>Size (EU)</span><a href="#" data-sg>Size guide</a></div>
+      <div class="sizes" id="pd-sizes"></div>
+      <div class="label"><span>Quantity</span></div>
+      <div class="qty"><button type="button" id="q-minus" aria-label="One less">−</button><span class="num" id="q-val">1</span><button type="button" id="q-plus" aria-label="One more">+</button></div>
+      <p class="err" id="pd-err" role="alert"></p>
+      <button class="cta wide" type="button" id="pd-add">Add to cart</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- size guide -->
+<dialog id="sg" aria-labelledby="sg-title" style="width:min(560px,calc(100vw - 24px))">
+  <button class="x" type="button" data-close aria-label="Close size guide">✕</button>
+  <div class="box" style="border:0">
+    <span class="eyebrow">Find your fit</span>
+    <h2 id="sg-title">Size guide</h2>
+    <p>Stand on a sheet of paper, mark your heel and longest toe, and measure the distance. Pick the size at or just above your measurement.</p>
+    <div class="sizes-table"><table class="num" id="size-table"></table></div>
+    <p style="margin:14px 0 0;font-size:13px">Foot lengths follow the standard EU sizing formula and are approximate.</p>
+  </div>
+</dialog>
+
+<!-- cart -->
+<dialog id="cart" class="drawer" aria-labelledby="cart-title">
+  <div class="drawer-in">
+    <div class="drawer-head"><h2 id="cart-title">Your cart</h2><button class="x" type="button" data-close aria-label="Close cart">✕</button></div>
+    <div class="items" id="cart-items"></div>
+    <div class="drawer-foot">
+      <div class="sum"><span>Subtotal</span><span class="num" id="cart-sub"></span></div>
+      <div class="sum"><span>Delivery</span><span>Set at checkout</span></div>
+      <button class="cta wide" type="button" id="go-checkout">Checkout</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- checkout -->
+<dialog id="checkout" aria-labelledby="co-title">
+  <button class="x" type="button" data-close aria-label="Close checkout">✕</button>
+  <div class="co" id="co-form-view">
+    <form id="co-form" novalidate>
+      <h2 id="co-title">Delivery details</h2>
+      <fieldset>
+        <legend>Who receives it</legend>
+        <div class="field"><label for="f-name">Full name <i>*</i></label><input id="f-name" name="name" autocomplete="name" required><span class="msg"></span></div>
+        <div class="f2">
+          <div class="field"><label for="f-phone">Mobile number <i>*</i></label><input id="f-phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="01XXXXXXXXX" maxlength="11" required><span class="msg"></span></div>
+          <div class="field"><label for="f-phone2">Second number (optional)</label><input id="f-phone2" name="phone2" inputmode="numeric" placeholder="01XXXXXXXXX" maxlength="11"><span class="msg"></span></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Where it goes</legend>
+        <div class="f2">
+          <div class="field"><label for="f-gov">Governorate <i>*</i></label><select id="f-gov" name="gov" required><option value="">Choose governorate</option></select><span class="msg"></span></div>
+          <div class="field"><label for="f-city">City / area <i>*</i></label><input id="f-city" name="city" list="city-list" placeholder="e.g. New Cairo, Fifth Settlement" required><datalist id="city-list"></datalist><span class="msg"></span></div>
+        </div>
+        <div class="field"><label for="f-street">Street name and building number <i>*</i></label><input id="f-street" name="street" autocomplete="street-address" placeholder="e.g. 12 El Nozha St" required><span class="msg"></span></div>
+        <div class="f3">
+          <div class="field"><label for="f-land">Nearest landmark <i>*</i></label><input id="f-land" name="landmark" placeholder="Mosque, school, mall, pharmacy" required><span class="msg"></span></div>
+          <div class="field"><label for="f-floor">Floor</label><input id="f-floor" name="floor" inputmode="numeric"></div>
+          <div class="field"><label for="f-apt">Apartment</label><input id="f-apt" name="apt"></div>
+        </div>
+        <div class="field"><label for="f-notes">Notes for the courier (optional)</label><textarea id="f-notes" name="notes" rows="2" placeholder="Best time to deliver, gate code, who to ask for"></textarea></div>
+      </fieldset>
+      <fieldset>
+        <legend>Payment</legend>
+        <label class="pay"><input type="radio" name="pay" id="pay-cod" value="Cash on delivery" checked><span><b>Cash on delivery</b><small>Pay the courier when your order arrives.</small></span></label>
+        <label class="pay"><input type="radio" name="pay" id="pay-card" value="Card or Apple Pay (send payment link)"><span><b>Card or Apple Pay</b><small>After you send your order, we message you a secure payment link on WhatsApp.</small></span></label>
+      </fieldset>
+      <p class="err" id="co-err" role="alert"></p>
+      <button class="cta wide" type="submit">Review order</button>
+    </form>
+    <aside>
+      <h3>Order summary</h3>
+      <div id="co-lines" style="display:grid;gap:8px"></div>
+      <hr style="border:0;border-top:1px solid var(--line);width:100%">
+      <div class="line-s"><span>Subtotal</span><span class="num" id="co-sub"></span></div>
+      <div class="line-s"><span>Delivery</span><span class="num" id="co-ship">Choose governorate</span></div>
+      <div class="line-s" style="font-weight:700;font-size:17px"><span style="color:var(--text)">Total</span><span class="num" id="co-total"></span></div>
+    </aside>
+  </div>
+  <div class="done" id="co-done" hidden>
+    <span class="eyebrow">One step left</span>
+    <h2>Send your order</h2>
+    <p style="margin:0;color:var(--mute)">Your order <b class="num" id="done-no" style="color:var(--text)"></b> is ready. Send it to us on WhatsApp to place it. We will call you to confirm before shipping.</p>
+    <pre id="done-text"></pre>
+    <div class="hero-actions">
+      <a class="cta" id="done-wa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+      <button class="cta ghost" type="button" id="done-copy">Copy order</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   STORE SETTINGS — edit these
+   ============================================================ */
+const STORE = {
+  name: "Fer3on Foot Wear",
+  // Your WhatsApp number in international format, digits only, e.g. "201001234567".
+  // While this is empty, the WhatsApp button lets the customer pick the chat themselves.
+  whatsapp: "",
+  sizes: [32,33,34,35,36,37,38,39,40,41,42],
+  // Delivery fee in EGP per governorate, e.g. { "Cairo": 60, "Giza": 60, "Alexandria": 75 }.
+  // Any governorate not listed shows "Confirmed by phone".
+  deliveryFees: {}
+};
+
+/* ============================================================
+   PRODUCTS — replace with the real shoes.
+   photo: leave "" to show the drawing, or put an image file name / data URI.
+   style: "low" | "high" | "chunky"   (also picks the drawing)
+   colors: [upper, panel, accent, midsole, outsole]
+   ============================================================ */
+const PRODUCTS = [
+  {id:"p01",name:"Nile Runner",   style:"low",   colorName:"Ice Blue / White",  price:950,  photo:"", colors:["#eaf6fb","#4ddcf7","#0e7fa6","#ffffff","#0b1118"], tag:"New"},
+  {id:"p02",name:"Giza High",     style:"high",  colorName:"Black / Ice",       price:1150, photo:"", colors:["#1a222c","#2b3744","#4ddcf7","#eef6f9","#4ddcf7"], tag:"New"},
+  {id:"p03",name:"Delta Chunk",   style:"chunky",colorName:"Cloud White",       price:1090, photo:"", colors:["#f4f7f9","#d6dee4","#4ddcf7","#ffffff","#b9c6cf"]},
+  {id:"p04",name:"Nile Runner",   style:"low",   colorName:"Midnight",          price:950,  photo:"", colors:["#131a22","#1f2a36","#4ddcf7","#dfe8ee","#06090d"]},
+  {id:"p05",name:"Siwa Low",      style:"low",   colorName:"Sand / Gum",        price:790,  photo:"", colors:["#e9dcc3","#cdb891","#7a5a34","#f7f1e3","#b9864f"]},
+  {id:"p06",name:"Luxor High",    style:"high",  colorName:"White / Royal",     price:1190, photo:"", colors:["#f3f6f8","#2f5fd0","#12307a","#ffffff","#2f5fd0"]},
+  {id:"p07",name:"Delta Chunk",   style:"chunky",colorName:"Triple Black",      price:1090, photo:"", colors:["#161b21","#262e37","#3a4652","#20262e","#0a0d11"]},
+  {id:"p08",name:"Aswan Low",     style:"low",   colorName:"Rose / Cream",      price:840,  photo:"", colors:["#f6e9e4","#e8a9ad","#c56a78","#fffaf5","#e8a9ad"]},
+  {id:"p09",name:"Giza High",     style:"high",  colorName:"Desert Red",        price:1150, photo:"", colors:["#f1ece6","#c8402f","#7d1f14","#ffffff","#c8402f"]},
+  {id:"p10",name:"Sinai Chunk",   style:"chunky",colorName:"Grey / Ice",        price:1120, photo:"", colors:["#c9d2d9","#8e9aa5","#4ddcf7","#eef3f6","#5a6672"], tag:"Limited"},
+  {id:"p11",name:"Siwa Low",      style:"low",   colorName:"Olive",             price:790,  photo:"", colors:["#6f7a52","#535c3c","#d9c58c","#efe9d6","#3b422b"]},
+  {id:"p12",name:"Aswan Low",     style:"low",   colorName:"White / Mint",      price:840,  photo:"", colors:["#f5f8f7","#8fdcc4","#3f9c83","#ffffff","#8fdcc4"]}
+];
+
+const STYLE_LABEL = {low:"Low-top sneaker", high:"High-top sneaker", chunky:"Chunky sneaker"};
+const GOVS = ["Cairo","Giza","Alexandria","Qalyubia","Sharqia","Dakahlia","Gharbia","Monufia","Beheira","Kafr El Sheikh","Damietta","Port Said","Ismailia","Suez","Faiyum","Beni Suef","Minya","Asyut","Sohag","Qena","Luxor","Aswan","Red Sea","New Valley","Matrouh","North Sinai","South Sinai"];
+const AREAS = {
+  "Cairo":["New Cairo","Nasr City","Heliopolis","Maadi","Shorouk","Madinaty","Rehab","Mokattam","Downtown","Zamalek","Shubra","Ain Shams","Helwan","Badr City","New Administrative Capital"],
+  "Giza":["6th of October","Sheikh Zayed","Dokki","Mohandessin","Agouza","Haram","Faisal","Imbaba","Hadayek El Ahram"],
+  "Alexandria":["Smouha","Sidi Gaber","Miami","Sidi Bishr","Montaza","Agami","Borg El Arab","Roushdy","Mandara"],
+  "Qalyubia":["Obour","Banha","Shubra El Kheima","Qalyub","Khanka"]
+};
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const egp = n => "EGP " + n.toLocaleString("en-US");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- placeholder shoe drawings ---------- */
+function shoeSVG(p){
+  const [up,panel,acc,mid,out] = p.colors;
+  const s = p.style;
+  const upper = {
+    low:   "M50 156 Q42 112 60 82 Q70 68 86 74 Q98 96 124 100 Q150 100 176 86 L198 76 Q216 100 252 122 Q302 142 352 152 Q374 158 374 172 L50 172 Z",
+    high:  "M50 156 Q40 96 52 40 Q58 26 76 30 Q92 44 122 46 Q150 46 172 36 L192 30 Q200 70 224 100 Q262 132 352 152 Q374 158 374 172 L50 172 Z",
+    chunky:"M46 150 Q38 108 58 78 Q68 64 86 70 Q98 92 124 96 Q150 96 176 82 L198 72 Q218 96 256 116 Q306 134 356 142 Q380 148 380 164 L46 164 Z"
+  }[s];
+  const heel = {
+    low:   "M50 156 Q42 112 60 82 Q70 68 86 74 Q94 90 106 96 Q98 126 102 172 L50 172 Z",
+    high:  "M50 156 Q40 96 52 40 Q58 26 76 30 Q86 40 100 44 Q94 110 100 172 L50 172 Z",
+    chunky:"M46 150 Q38 108 58 78 Q68 64 86 70 Q94 86 106 92 Q98 122 102 164 L46 164 Z"
+  }[s];
+  const toe = {
+    low:   "M296 140 Q340 148 374 172 L282 172 Q284 152 296 140 Z",
+    high:  "M296 140 Q340 148 374 172 L282 172 Q284 152 296 140 Z",
+    chunky:"M300 132 Q344 138 380 164 L286 164 Q288 144 300 132 Z"
+  }[s];
+  const stripe = {
+    low:   "M138 172 L196 104 L224 116 L190 172 Z",
+    high:  "M130 172 L186 84 L212 108 L184 172 Z",
+    chunky:"M140 164 L198 100 L228 112 L194 164 Z"
+  }[s];
+  const tongue = {
+    low:   "M176 86 Q184 62 204 60 L216 92 Z",
+    high:  "M172 36 Q178 14 198 12 L206 40 Z",
+    chunky:"M176 82 Q184 58 206 56 L218 88 Z"
+  }[s];
+  const lacesFrom = {low:[[204,84],[222,98],[240,110],[258,121]], high:[[196,44],[202,64],[212,82],[226,98],[244,112]], chunky:[[206,80],[224,94],[242,106],[260,116]]}[s];
+  const laces = lacesFrom.map(([x,y]) => `<path d="M${x} ${y} l-20 14" stroke="${mid}" stroke-width="5" stroke-linecap="round"/>`).join("");
+  const sole = s === "chunky"
+    ? `<path d="M40 160 Q30 162 32 184 Q30 210 56 212 L352 212 Q388 212 386 182 Q386 166 378 160 Z" fill="${mid}"/>
+       <path d="M34 196 Q34 212 56 212 L352 212 Q384 212 386 192 Q360 202 300 200 L70 200 Q46 200 34 196 Z" fill="${out}"/>
+       <path d="M70 178 h60 M150 178 h70 M240 178 h60" stroke="${acc}" stroke-width="5" stroke-linecap="round" opacity=".9"/>`
+    : `<path d="M44 168 Q34 170 36 186 Q36 202 56 202 L352 202 Q382 202 380 182 Q380 172 374 168 Z" fill="${mid}"/>
+       <path d="M37 190 Q38 202 56 202 L352 202 Q378 202 380 188 Q356 194 300 193 L70 193 Q48 193 37 190 Z" fill="${out}"/>`;
+  return `<svg viewBox="0 0 420 240" role="img" aria-label="${esc(p.name)} in ${esc(p.colorName)} (placeholder drawing)">
+    <ellipse cx="210" cy="216" rx="170" ry="9" fill="#000" opacity=".45"/>
+    <path d="${tongue}" fill="${panel}"/>
+    <path d="${upper}" fill="${up}"/>
+    <path d="${stripe}" fill="${panel}"/>
+    <path d="${heel}" fill="${panel}"/>
+    <path d="${toe}" fill="${panel}" opacity=".55"/>
+    <path d="${heel}" fill="${acc}" opacity=".0"/>
+    <rect x="56" y="${s==="high"?52:96}" width="34" height="9" rx="4.5" fill="${acc}" transform="rotate(-8 73 ${s==="high"?56:100})"/>
+    ${laces}
+    ${sole}
+  </svg>`;
+}
+const artHTML = p => p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)} in ${esc(p.colorName)}">` : shoeSVG(p);
+
+/* ---------- catalogue ---------- */
+let filter = "all", sort = "featured";
+function renderFilters(){
+  const styles = ["all", ...(PRODUCTS.some(p => p.tag==="New") ? ["new"] : []), ...new Set(PRODUCTS.map(p => p.style))];
+  $("#filters").innerHTML = styles.map(s =>
+    `<button class="chip" type="button" data-f="${s}" aria-pressed="${s===filter}">${s==="all"?"All":s==="new"?"New":STYLE_LABEL[s].replace(" sneaker","")}</button>`).join("");
+}
+function renderGrid(){
+  let list = PRODUCTS.filter(p => filter==="all" || (filter==="new" ? p.tag==="New" : p.style===filter));
+  if (sort==="low") list = [...list].sort((a,b)=>a.price-b.price);
+  if (sort==="high") list = [...list].sort((a,b)=>b.price-a.price);
+  $("#grid").innerHTML = list.map(p => `
+    <button class="card" type="button" data-id="${p.id}" aria-label="${esc(p.name)}, ${esc(p.colorName)}, ${egp(p.price)}. Choose size">
+      <div class="art">${p.tag?`<span class="tag">${esc(p.tag)}</span>`:""}${artHTML(p)}</div>
+      <div class="info">
+        <h3>${esc(p.name)}</h3>
+        <div class="sub">${esc(p.colorName)} · ${STORE.sizes[0]} to ${STORE.sizes.at(-1)}</div>
+        <div class="row"><span class="price num"><small>EGP</small>${p.price.toLocaleString("en-US")}</span><span class="pick">Choose size →</span></div>
+      </div>
+    </button>`).join("");
+}
+$("#filters").addEventListener("click", e => { const b = e.target.closest("[data-f]"); if(!b) return; filter = b.dataset.f; renderFilters(); renderGrid(); });
+$("#new-btn").onclick = () => { filter = "new"; renderFilters(); renderGrid(); $("#shop").scrollIntoView(); };
+$("#sort").addEventListener("change", e => { sort = e.target.value; renderGrid(); });
+
+/* ---------- product dialog ---------- */
+let current = null, pickedSize = null, qty = 1;
+$("#grid").addEventListener("click", e => { const c = e.target.closest("[data-id]"); if(c) openProduct(c.dataset.id); });
+function openProduct(id){
+  current = PRODUCTS.find(p => p.id===id); pickedSize = null; qty = 1;
+  $("#pd-art").innerHTML = artHTML(current);
+  $("#pd-style").textContent = STYLE_LABEL[current.style] || "";
+  $("#pd-name").textContent = current.name;
+  $("#pd-color").textContent = current.colorName;
+  $("#pd-price").textContent = egp(current.price);
+  $("#pd-err").textContent = ""; $("#q-val").textContent = 1;
+  $("#pd-sizes").innerHTML = STORE.sizes.map(s => `<button class="sz num" type="button" data-s="${s}" aria-pressed="false">${s}</button>`).join("");
+  $("#pd").showModal();
+}
+$("#pd-sizes").addEventListener("click", e => {
+  const b = e.target.closest("[data-s]"); if(!b) return;
+  pickedSize = +b.dataset.s; $("#pd-err").textContent = "";
+  document.querySelectorAll("#pd-sizes .sz").forEach(x => x.setAttribute("aria-pressed", x===b));
+});
+$("#q-minus").onclick = () => { qty = Math.max(1, qty-1); $("#q-val").textContent = qty; };
+$("#q-plus").onclick  = () => { qty = Math.min(10, qty+1); $("#q-val").textContent = qty; };
+$("#pd-add").onclick = () => {
+  if(!pickedSize){ $("#pd-err").textContent = "Choose a size first."; return; }
+  const line = cart.find(l => l.id===current.id && l.size===pickedSize);
+  if(line) line.qty = Math.min(10, line.qty+qty); else cart.push({id:current.id,size:pickedSize,qty});
+  saveCart(); renderCart(); $("#pd").close();
+  toast(`${current.name}, size ${pickedSize} added to cart`);
+};
+
+/* ---------- cart ---------- */
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("fer3on-cart") || "[]").filter(l => PRODUCTS.some(p => p.id===l.id)); } catch(e){ cart = []; }
+function saveCart(){ try { localStorage.setItem("fer3on-cart", JSON.stringify(cart)); } catch(e){} }
+const lines = () => cart.map(l => ({...l, p: PRODUCTS.find(p => p.id===l.id)}));
+const subtotal = () => lines().reduce((t,l) => t + l.p.price*l.qty, 0);
+function renderCart(){
+  const n = cart.reduce((t,l)=>t+l.qty,0);
+  $("#cart-count").textContent = n;
+  $("#cart-items").innerHTML = cart.length ? lines().map((l,i) => `
+    <div class="item">
+      <div class="art">${artHTML(l.p)}</div>
+      <div><b>${esc(l.p.name)}</b><span class="sub">${esc(l.p.colorName)} · Size ${l.size}</span>
+        <div style="margin-top:8px" class="qty"><button type="button" data-dec="${i}" aria-label="One less">−</button><span class="num">${l.qty}</span><button type="button" data-inc="${i}" aria-label="One more">+</button></div>
+      </div>
+      <div style="text-align:right"><b class="num">${egp(l.p.price*l.qty)}</b><button class="rm" type="button" data-rm="${i}">Remove</button></div>
+    </div>`).join("") : `<div class="empty">Your cart is empty.<br>Pick a pair and a size to get started.</div>`;
+  $("#cart-sub").textContent = egp(subtotal());
+  $("#go-checkout").disabled = !cart.length;
+  $("#go-checkout").style.opacity = cart.length ? 1 : .4;
+}
+$("#cart-items").addEventListener("click", e => {
+  const t = e.target;
+  if(t.dataset.rm!==undefined) cart.splice(+t.dataset.rm,1);
+  else if(t.dataset.inc!==undefined) cart[+t.dataset.inc].qty = Math.min(10, cart[+t.dataset.inc].qty+1);
+  else if(t.dataset.dec!==undefined){ const l = cart[+t.dataset.dec]; l.qty--; if(l.qty<1) cart.splice(+t.dataset.dec,1); }
+  else return;
+  saveCart(); renderCart();
+});
+$("#open-cart").onclick = () => $("#cart").showModal();
+
+/* ---------- checkout ---------- */
+$("#f-gov").insertAdjacentHTML("beforeend", GOVS.map(g => `<option>${g}</option>`).join(""));
+const shipFee = () => { const g = $("#f-gov").value; return g && STORE.deliveryFees[g] != null ? STORE.deliveryFees[g] : null; };
+function renderSummary(){
+  $("#co-lines").innerHTML = lines().map(l => `<div class="line-s"><span>${esc(l.p.name)} · ${l.size} × ${l.qty}</span><span class="num">${egp(l.p.price*l.qty)}</span></div>`).join("");
+  const fee = shipFee(), g = $("#f-gov").value;
+  $("#co-sub").textContent = egp(subtotal());
+  $("#co-ship").textContent = !g ? "Choose governorate" : fee==null ? "Confirmed by phone" : fee===0 ? "Free" : egp(fee);
+  $("#co-total").textContent = egp(subtotal() + (fee||0)) + (g && fee==null ? " + delivery" : "");
+}
+$("#f-gov").addEventListener("change", () => {
+  $("#city-list").innerHTML = (AREAS[$("#f-gov").value]||[]).map(a => `<option value="${a}">`).join("");
+  renderSummary();
+});
+$("#go-checkout").onclick = () => {
+  if(!cart.length) return;
+  $("#cart").close(); $("#co-form-view").hidden = false; $("#co-done").hidden = true;
+  renderSummary(); $("#checkout").showModal();
+};
+const PHONE = /^01[0125]\d{8}$/;
+function validate(){
+  const rules = {
+    "f-name":  v => v.trim().split(/\s+/).length >= 2 ? "" : "Enter your first and last name.",
+    "f-phone": v => PHONE.test(v) ? "" : "Enter an 11-digit Egyptian mobile number starting with 010, 011, 012 or 015.",
+    "f-phone2":v => !v || PHONE.test(v) ? "" : "This number should be 11 digits starting with 010, 011, 012 or 015.",
+    "f-gov":   v => v ? "" : "Choose your governorate.",
+    "f-city":  v => v.trim().length >= 2 ? "" : "Enter your city or area.",
+    "f-street":v => v.trim().length >= 4 ? "" : "Enter the street name and building number.",
+    "f-land":  v => v.trim().length >= 3 ? "" : "Add a landmark the courier can find."
+  };
+  let first = null;
+  for(const id in rules){
+    const el = document.getElementById(id), msg = rules[id](el.value.replace(/\s+/g, id.includes("phone") ? "" : " "));
+    const f = el.closest(".field"); f.classList.toggle("invalid", !!msg); f.querySelector(".msg").textContent = msg;
+    if(msg && !first) first = el;
+  }
+  if(first) first.focus();
+  return !first;
+}
+$("#co-form").addEventListener("submit", e => {
+  e.preventDefault();
+  if(!validate()){ $("#co-err").textContent = "Some details are missing. Check the fields marked in red."; return; }
+  $("#co-err").textContent = "";
+  const d = Object.fromEntries(new FormData(e.target)), fee = shipFee();
+  const no = "FR-" + Date.now().toString(36).slice(-6).toUpperCase();
+  const text = [
+    `New order ${no} · ${STORE.name}`, "",
+    ...lines().map((l,i) => `${i+1}) ${l.p.name} (${l.p.colorName}) · size ${l.size} × ${l.qty} = ${egp(l.p.price*l.qty)}`), "",
+    `Subtotal: ${egp(subtotal())}`,
+    `Delivery: ${fee==null ? "to be confirmed" : egp(fee)}`,
+    `Total: ${egp(subtotal()+(fee||0))}${fee==null ? " + delivery" : ""}`,
+    `Payment: ${d.pay}`, "",
+    `Name: ${d.name.trim()}`,
+    `Mobile: ${d.phone}${d.phone2 ? " / " + d.phone2 : ""}`,
+    `Governorate: ${d.gov}`,
+    `City / area: ${d.city.trim()}`,
+    `Address: ${d.street.trim()}${d.floor ? ", floor " + d.floor : ""}${d.apt ? ", apt " + d.apt : ""}`,
+    `Landmark: ${d.landmark.trim()}`,
+    ...(d.notes.trim() ? [`Notes: ${d.notes.trim()}`] : [])
+  ].join("\n");
+  $("#done-no").textContent = no; $("#done-text").textContent = text;
+  $("#done-wa").href = "https://wa.me/" + STORE.whatsapp.replace(/\D/g,"") + "?text=" + encodeURIComponent(text);
+  $("#co-form-view").hidden = true; $("#co-done").hidden = false;
+  $("#checkout").scrollTop = 0;
+});
+$("#done-copy").onclick = async () => {
+  try { await navigator.clipboard.writeText($("#done-text").textContent); toast("Order copied"); }
+  catch(e){ toast("Select the text and copy it"); }
+};
+
+/* ---------- shared ---------- */
+document.addEventListener("click", e => {
+  if(e.target.closest("[data-sg]")){ e.preventDefault(); $("#sg").showModal(); return; }
+  const c = e.target.closest("[data-close]"); if(c) c.closest("dialog").close();
+  if(e.target.tagName === "DIALOG") e.target.close();   // click on backdrop
+});
+let tt; function toast(m){ const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2200); }
+
+/* size guide: EU size = 1.5 × (foot length cm + 1.5) */
+$("#size-table").innerHTML = `<tr><th>EU size</th><th>Foot length</th><th>EU size</th><th>Foot length</th></tr>` +
+  Array.from({length: Math.ceil(STORE.sizes.length/2)}, (_,i) => {
+    const a = STORE.sizes[i], b = STORE.sizes[i + Math.ceil(STORE.sizes.length/2)];
+    const cm = s => (s/1.5 - 1.5).toFixed(1) + " cm";
+    return `<tr><td>${a}</td><td>${cm(a)}</td><td>${b ?? ""}</td><td>${b ? cm(b) : ""}</td></tr>`;
+  }).join("");
+
+if(PRODUCTS.every(p => p.photo)) $("#sample-note").hidden = true;
+renderFilters(); renderGrid(); renderCart();
+</script>
+</body>
+</html>

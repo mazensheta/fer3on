@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mazensheta.github.io/fer3on/sitemap.xml
